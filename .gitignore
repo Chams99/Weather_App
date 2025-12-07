@@ -1,0 +1,24 @@
+# Gradle
+.gradle/
+**/build/
+!src/**/build.gradle
+
+# IDEA / Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Local Env
+local.properties
+
+# Logs / Reports
+*.log
+**/reports/
+**/reports/problems/
+*.html
+
+# Cache
+.cxx/
+captures/
+outputs/
