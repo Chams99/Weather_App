@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="city_label">City:</string>
+    <string name="temp_label">Temperature:</string>
+    <string name="desc_label">Description:</string>
+    <string name="loading">Loading...</string>
+    <string name="error_msg">Failed to load weather data</string>
+</resources>

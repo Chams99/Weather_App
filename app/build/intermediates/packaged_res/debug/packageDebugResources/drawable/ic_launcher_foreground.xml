@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Sun rays behind cloud (Samsung Meteo style - subtle) -->
+    <group>
+        <!-- Main sun rays - 8 rays total -->
+        <path
+            android:fillColor="#FFD700"
+            android:pathData="M53,10h2v6h-2z"
+            android:alpha="0.75"/>
+        <path
+            android:fillColor="#FFD700"
+            android:pathData="M53,92h2v6h-2z"
+            android:alpha="0.75"/>
+        <path
+            android:fillColor="#FFD700"
+            android:pathData="M10,53h6v2h-6z"
+            android:alpha="0.75"/>
+        <path
+            android:fillColor="#FFD700"
+            android:pathData="M92,53h6v2h-6z"
+            android:alpha="0.75"/>
+        
+        <!-- Diagonal rays -->
+        <path
+            android:fillColor="#FFD700"
+            android:pathData="M26,26l4.2,4.2l-1.4,1.4l-4.2,-4.2z"
+            android:alpha="0.75"/>
+        <path
+            android:fillColor="#FFD700"
+            android:pathData="M77.8,77.8l4.2,4.2l-1.4,1.4l-4.2,-4.2z"
+            android:alpha="0.75"/>
+        <path
+            android:fillColor="#FFD700"
+            android:pathData="M26,77.8l4.2,-4.2l1.4,1.4l-4.2,4.2z"
+            android:alpha="0.75"/>
+        <path
+            android:fillColor="#FFD700"
+            android:pathData="M77.8,26l4.2,-4.2l1.4,1.4l-4.2,4.2z"
+            android:alpha="0.75"/>
+        
+        <!-- Sun circle (behind cloud, centered) -->
+        <path
+            android:fillColor="#FFD700"
+            android:pathData="M 49,54 A 5,5 0 1,1 59,54 A 5,5 0 1,1 49,54"
+            android:alpha="0.85"/>
+    </group>
+    
+    <!-- Main cloud (Samsung Meteo style - prominent white cloud) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,70c-7.2,0 -13,-5.8 -13,-13c0,-3.6 1.4,-6.9 3.8,-9.3c1.2,-4.8 5.6,-8.2 10.4,-8.2c2.4,0 4.7,0.8 6.6,2.2c3.1,-3.7 7.9,-6 13.2,-6c9.1,0 16.5,7.4 16.5,16.5c0,0.6 -0.1,1.1 -0.2,1.6c3.6,1.6 6.2,5.2 6.2,9.3c0,6 -4.9,11 -11,11H54z"/>
+</vector>

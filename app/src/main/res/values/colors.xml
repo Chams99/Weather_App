@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Samsung One UI Inspired Colors -->
+    <color name="primary">#5E5CE6</color>
+    <color name="primary_variant">#4A4ACF</color>
+    <color name="secondary">#00C7BE</color>
+    <color name="secondary_variant">#00A89F</color>
+    
+    <!-- Weather Condition Colors -->
+    <!-- Clear/Sunny -->
+    <color name="sunny_top">#FF9A56</color>
+    <color name="sunny_middle">#FFB84D</color>
+    <color name="sunny_bottom">#FFC837</color>
+    
+    <!-- Clear Night -->
+    <color name="night_top">#0F2027</color>
+    <color name="night_middle">#203A43</color>
+    <color name="night_bottom">#2C5364</color>
+    
+    <!-- Cloudy -->
+    <color name="cloudy_top">#56CCF2</color>
+    <color name="cloudy_middle">#2F80ED</color>
+    <color name="cloudy_bottom">#7F7FD5</color>
+    
+    <!-- Rainy -->
+    <color name="rainy_top">#536976</color>
+    <color name="rainy_middle">#667C8A</color>
+    <color name="rainy_bottom">#7A92A3</color>
+    
+    <!-- Stormy -->
+    <color name="stormy_top">#232526</color>
+    <color name="stormy_middle">#414345</color>
+    <color name="stormy_bottom">#5A5C5E</color>
+    
+    <!-- Snowy -->
+    <color name="snowy_top">#E6DADA</color>
+    <color name="snowy_middle">#C8D6E5</color>
+    <color name="snowy_bottom">#8EC5FC</color>
+    
+    <!-- Glass UI -->
+    <color name="glass_white">#33FFFFFF</color>
+    <color name="glass_white_strong">#4DFFFFFF</color>
+    <color name="glass_border">#1AFFFFFF</color>
+    <color name="glass_shadow">#33000000</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="text_tertiary">#80FFFFFF</color>
+    
+    <!-- Accent Colors -->
+    <color name="accent_blue">#5E5CE6</color>
+    <color name="accent_teal">#00C7BE</color>
+    <color name="accent_orange">#FF9A56</color>
+    <color name="accent_purple">#A78BFA</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#34D399</color>
+    <color name="warning">#FBBF24</color>
+    <color name="error">#EF4444</color>
+    <color name="info">#60A5FA</color>
+</resources>
