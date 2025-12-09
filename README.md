@@ -44,7 +44,11 @@ weather_app/
 │   │   │   │   ├── MainActivity.java          # Main activity with UI logic
 │   │   │   │   ├── WeatherForecast.java       # Data models for forecasts
 │   │   │   │   ├── HourlyForecastAdapter.java # RecyclerView adapter for hourly forecast
-│   │   │   │   └── DailyForecastAdapter.java  # RecyclerView adapter for daily forecast
+│   │   │   │   ├── DailyForecastAdapter.java  # RecyclerView adapter for daily forecast
+│   │   │   │   ├── CitySearchAdapter.java     # Autocomplete adapter with API integration
+│   │   │   │   ├── WebViewWeatherIcon.java    # Custom WebView for SVG weather icons
+│   │   │   │   └── SvgUtils.java              # Utility for weather icon mapping
+│   │   │   ├── assets/                        # SVG weather icons (14 animated icons)
 │   │   │   ├── res/
 │   │   │   │   ├── layout/
 │   │   │   │   │   ├── activity_main.xml      # Main activity layout
@@ -118,6 +122,53 @@ RecyclerView adapter for vertical daily forecast list:
 - Shows "Today" for the first item
 - Maps weather conditions to appropriate icons
 
+### CitySearchAdapter.java
+Custom adapter for intelligent city search with autocomplete:
+- **Hybrid Search System**: Combines local Tunisian cities with worldwide API results
+- **Priority Filtering**: Shows Tunisian cities first, then international matches
+- **API Integration**: Fetches cities from OpenWeatherMap Geocoding API
+- **Background Processing**: API calls executed in background thread
+- **Duplicate Prevention**: Filters out duplicate city entries
+- **Result Management**: Limits results to 15 items for optimal performance
+
+**Key Features:**
+- Implements `Filterable` interface for autocomplete functionality
+- Custom `CityFilter` class for combined local/API filtering
+- Automatic fallback to local cities if API fails
+- Supports city name, country code, state, and coordinates
+- 5-second timeout for API requests
+
+### WebViewWeatherIcon.java
+Custom WebView component for rendering animated SVG weather icons:
+- **Transparent Background**: Seamless integration with app UI
+- **Optimal Rendering**: Software layer rendering for smooth animations
+- **Responsive Scaling**: HTML/CSS wrapper for proper SVG sizing
+- **Error Handling**: Fallback icon displayed on load errors
+- **Asset Loading**: Reads SVG files from `assets` folder
+- **No JavaScript**: Uses CSS-based animations only
+
+**Key Methods:**
+- `loadWeatherIcon(String svgFileName)`: Loads and displays SVG icon
+- `readAssetFile(String fileName)`: Reads SVG content from assets
+- `createHtmlWrapper(String svgContent)`: Wraps SVG in responsive HTML
+- `loadFallbackIcon()`: Displays default icon on error
+
+### SvgUtils.java
+Utility class for weather condition to SVG icon mapping:
+- **Condition Mapping**: Maps weather conditions to appropriate SVG files
+- **Day/Night Support**: Returns different icons based on time of day
+- **Alias Handling**: Supports multiple condition names (e.g., "drizzle" → "rain.svg")
+- **Default Fallback**: Returns "cloudy.svg" for unknown conditions
+
+**Supported Conditions:**
+- Clear (day/night variations)
+- Clouds, Partly Cloudy, Overcast
+- Rain, Drizzle
+- Thunderstorm (day/night variations)
+- Snow
+- Mist, Fog, Haze, Smoke
+
+
 ## 🌐 API Integration
 
 ### OpenWeatherMap API
@@ -132,6 +183,24 @@ The app uses OpenWeatherMap's free tier API:
 - `appid`: API key
 - `units`: metric (for Celsius)
 - `cnt`: Number of forecast items (for daily forecast)
+
+### OpenWeatherMap Geocoding API
+The app uses the Geocoding API for intelligent city search:
+- **Geocoding API**: `http://api.openweathermap.org/geo/1.0/direct`
+
+**Features:**
+- **Hybrid Search**: Combines local Tunisian cities with worldwide API results
+- **Priority System**: Tunisian cities shown first, followed by international matches
+- **Real-time Search**: API calls made as user types (with debouncing)
+- **Duplicate Prevention**: Filters out duplicate city entries
+- **Result Limiting**: Maximum 15 results for optimal UX
+
+**Implementation Details:**
+- Custom `CitySearchAdapter` with `Filterable` interface
+- Background thread execution for API calls
+- 5-second timeout for geocoding requests
+- Automatic fallback to local cities if API fails
+- Supports city name, country code, and state information
 
 ### Network Implementation
 - Uses `HttpURLConnection` for API calls
@@ -166,13 +235,48 @@ Dynamic backgrounds change based on:
 - Background drawables: `bg_clear_day`, `bg_clear_night`, `bg_cloudy`, `bg_rainy`, `bg_stormy`, `bg_snowy`
 
 ### Weather Icons
-Vector drawables for different conditions:
-- `ic_weather_clear`: Clear/sunny weather
-- `ic_weather_clouds`: Cloudy weather
-- `ic_weather_rain`: Rain/drizzle
-- `ic_weather_storm`: Thunderstorm
-- `ic_weather_snow`: Snow
-- `ic_weather_mist`: Mist/fog/haze
+
+The app now uses **animated SVG weather icons** for a modern, dynamic visual experience:
+
+**Available SVG Icons** (located in `app/src/main/assets/`):
+- `clear-day.svg` - Sunny/clear weather during daytime
+- `clear-night.svg` - Clear weather at night with moon
+- `cloudy.svg` - Cloudy/overcast conditions
+- `partly-cloudy-day.svg` - Partly cloudy during daytime
+- `partly-cloudy-night.svg` - Partly cloudy at night
+- `overcast.svg` - Fully overcast sky
+- `rain.svg` - Rain/drizzle conditions
+- `overcast-day-rain.svg` - Rainy overcast day
+- `overcast-day-snow.svg` - Snowy overcast day
+- `snow.svg` - Snow conditions
+- `fog.svg` - Mist/fog/haze/smoke
+- `thunderstorms.svg` - General thunderstorm
+- `thunderstorms-day.svg` - Thunderstorm during daytime
+- `thunderstorms-night.svg` - Thunderstorm at night
+
+**Technical Implementation:**
+
+1. **WebViewWeatherIcon** - Custom WebView component for rendering SVG icons:
+   - Transparent background support
+   - Optimal SVG scaling and rendering
+   - Software layer rendering for smooth animations
+   - HTML wrapper with responsive CSS
+   - Fallback icon on load errors
+   - No JavaScript required (CSS-based animations)
+
+2. **SvgUtils** - Utility class for icon mapping:
+   - Maps weather conditions to appropriate SVG files
+   - Supports day/night variations
+   - Handles multiple condition aliases (e.g., "drizzle" → "rain.svg")
+   - Default fallback to "cloudy.svg"
+
+**Legacy Vector Drawables** (still available in `res/drawable/`):
+- `ic_weather_clear` - Clear/sunny weather
+- `ic_weather_clouds` - Cloudy weather
+- `ic_weather_rain` - Rain/drizzle
+- `ic_weather_storm` - Thunderstorm
+- `ic_weather_snow` - Snow
+- `ic_weather_mist` - Mist/fog/haze
 
 ## 🛠️ Technical Details
 
